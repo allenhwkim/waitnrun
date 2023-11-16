@@ -1,0 +1,20 @@
+{
+  "name": "waitnrun",
+  "version": "0.1.0",
+  "main": "index.js",
+  "bin": {
+    "waitnrun": "index.js"
+  },
+  "keywords": [],
+  "author": "allenhwkim@gmail.com",
+  "license": "MIT",
+  "description": "Start servers and run your test",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/allenhwkim/waitnrun.git"
+  },
+  "bugs": {
+    "url": "https://github.com/allenhwkim/waitnrun/issues"
+  },
+  "homepage": "https://github.com/allenhwkim/waitnrun#readme"
+}
