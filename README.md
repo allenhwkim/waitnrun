@@ -1,6 +1,14 @@
 # waitnrun
+> wait-and-run
 
-Starts server, waits for ports, then run your tests
+Starts server, waits for URL, then run your tests.
+
+This package is developed because I could not resolve `npm audit` issues of "start-and-server" package, especially `wait-on` and `axios` package.
+
+It's a simplified version of [start-server-and-test](https://www.npmjs.com/package/start-server-and-test).
+It has zero dependency. Therefore, you will see 0(zero) security vulnerability.
+
+The package size is 2.3KB(0 npm module dependency), compared to start-server-and-test's 11KB(plus 107 npm module dependencies).
 
 ## Install
 
@@ -17,4 +25,5 @@ npm install waitnrun -D
 waitnrun 'npx http-server' 8080 'npx cypress run'
 waitnrun 'npx http-server' :8080/index.html 'npx cypress run'
 waitnrun 'npx http-server' http://localhost:8080/index.html 'npx cypress run'
+waitnrun start-server :4300/api/health 'npx ng serve' 'npx cypress run'
 ```
