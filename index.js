@@ -38,8 +38,8 @@ function runCommand(command) {
   const cmdArgs = command.split(' ').map(el => el.trim());
   const cmd = cmdArgs.shift();
   const childProc = spawn(cmd, cmdArgs);
-  childProc.stdout.on('data', (data) => console.log(''+data));
-  childProc.stderr.on('data', (data) => console.error(''+data));
+  childProc.stdout.on('data', (data) => console.log((''+data).replace(/\n$/, '')));
+  childProc.stderr.on('data', (data) => console.error((''+data).replace(/\n$/, '')));
   // Assuming the last command exits, others keep running
   childProc.on('close', (code) => { 
     console.log(`[waitnrun] ${command} exited with code ${code}`);
