@@ -13,7 +13,7 @@ const args = process.argv.splice(2);
 
 
 const promises = args.map( arg => {
-  if (pkg.scripts[arg]) {                  // npm script 
+  if (pkg.scripts?.[arg]) {                  // npm script 
     return () => runCommand(`npm run ${arg}`);
   } else if (arg.match(/^http[s]?:\/\//)) { // url
     return () => checkURL(arg);
@@ -65,7 +65,7 @@ function runCommand(command) {
   }); 
 }
 
-function checkURL(url, timeout=10000) {
+function checkURL(url, timeout=30000) {
   const httpOrHttps = new URL(url).protocol === 'https' ? https : http;
 
   return new Promise((resolve, reject) => {
@@ -79,7 +79,7 @@ function checkURL(url, timeout=10000) {
               resolve(res.statusMessage);
             }
           }).on('error', err => {
-            console.log('[waitnrun]', 10 - i+1, url, err.message);
+            console.log('[waitnrun]', (timeout/1000) - i+1, '/', (timeout/1000), url, err.message);
           });
           (i > 0) && loop(i-1);
         }, 1000);
