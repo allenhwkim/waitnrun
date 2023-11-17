@@ -3,11 +3,15 @@ const { spawn } = require('node:child_process')
 const https = require('https');
 const http = require('http');
 const path = require('path');
+const fs = require('fs');
 const { clearInterval } = require('node:timers');
 const pkg = require(path.join(process.cwd(), './package.json'));
 
 // npx waitnrun http://localhost:3000
 const args = process.argv.splice(2);
+
+
+
 const promises = args.map( arg => {
   if (pkg.scripts[arg]) {                  // npm script 
     return () => runCommand(`npm run ${arg}`);
@@ -33,10 +37,24 @@ async function main(){
   }
 }
 
+function isNpmCommand(command) {
+  const cmdArgs = command.split(' ').map(el => el.trim());
+  const cmd = cmdArgs.shift();
+  const nodeBinPath = path.join(process.cwd(), 'node_modules', '.bin', cmd);
+  try {
+    fs.accessSync(nodeBinPath, fs.constants.X_OK);
+  } catch (err) {
+    return false;
+  } 
+  return true;
+}
+
 function runCommand(command) {
   console.log('[waitnrun] runCommand ',{command})
   const cmdArgs = command.split(' ').map(el => el.trim());
-  const cmd = cmdArgs.shift();
+  const cmd = isNpmCommand(command) ? 'npx' : cmdArgs.shift();
+  console.log('[waitnrun] runCommand ',{command, cmd, cmdArgs})
+
   const childProc = spawn(cmd, cmdArgs);
   childProc.stdout.on('data', (data) => console.log((''+data).replace(/\n$/, '')));
   childProc.stderr.on('data', (data) => console.error((''+data).replace(/\n$/, '')));

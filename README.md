@@ -22,8 +22,8 @@ npm install waitnrun -D
 
 ```shell
 # run http-server, then when port 8000 responds run Cypress tests
-waitnrun 'npx http-server' 8080 'npx cypress run'
-waitnrun 'npx http-server' :8080/index.html 'npx cypress run'
-waitnrun 'npx http-server' http://localhost:8080/index.html 'npx cypress run'
-waitnrun start-server :4300/api/health 'npx ng serve' 'npx cypress run'
+waitnrun 'npx http-server' 8080 'cypress run'
+waitnrun 'npx http-server' :8080/index.html 'cypress run'
+waitnrun 'npx http-server' http://localhost:8080/index.html 'cypress run'
+waitnrun start-server :4300/api/health 'ng serve' 'cypress run'
 ```
