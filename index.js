@@ -16,9 +16,9 @@ const promises = args.map( arg => {
   if (pkg.scripts?.[arg]) {                  // npm script 
     return () => runCommand(`npm run ${arg}`);
   } else if (arg.match(/^http[s]?:\/\//)) { // url
-    return () => checkURL(arg);
+    return async () => await checkURL(arg);
   } else if (arg.match(/^:?[0-9]+/)) {      // port number
-    return () => checkURL(`http://localhost:${arg.replace(/^:/,'')}`)
+    return async () => await checkURL(`http://localhost:${arg.replace(/^:/,'')}`)
   } else {                                  // other command
     return () => runCommand(arg);
   }
