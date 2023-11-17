@@ -75,13 +75,12 @@ function checkURL(url, timeout=30000) {
           httpOrHttps.get(url, res => {
             if (res.statusCode === 200) {
               console.log('[waitnrun]', res.statusCode, res.statusMessage, url);
-              i = 0;
               resolve(res.statusMessage);
             }
           }).on('error', err => {
             console.log('[waitnrun]', (timeout/1000) - i+1, '/', (timeout/1000), url, err.message);
+            loop(i-1)
           });
-          (i > 0) && loop(i-1);
         }, 1000);
       } else {
         console.error('[waitnrun] ERROR Timeout', i, url);
