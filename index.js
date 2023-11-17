@@ -84,7 +84,7 @@ function checkURL(url, timeout=30000) {
           (i > 0) && loop(i-1);
         }, 1000);
       } else {
-        console.error('[waitnrun] ERROR Timeout');
+        console.error('[waitnrun] ERROR Timeout', i, url);
         reject('Timeout');
       }
     }(timeout/1000));
