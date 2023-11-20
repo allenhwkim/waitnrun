@@ -19,7 +19,12 @@ npm install waitnrun -D
 ```
 
 ## Usage
+```javascript
+const procs = await waitnrun(['http-server', ':8080', 'ng serve', ':3000', 'cypress run']);
+procs.forEach(proc => proc?.kill?.());
+```
 
+## CLI
 ```shell
 # run http-server, then when port 8000 responds run Cypress tests
 waitnrun 'npx http-server' 8080 'cypress run'
