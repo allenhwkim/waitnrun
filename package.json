@@ -2,6 +2,9 @@
   "name": "waitnrun",
   "version": "0.2.4",
   "main": "index.js",
+  "scripts": {
+    "test": "node --test test/*.spec.js"
+  },
   "bin": {
     "waitnrun": "index.js"
   },
