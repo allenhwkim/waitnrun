@@ -6,4 +6,4 @@ const commands = process.argv.splice(2); // ['npx', 'waitnrun', ':3000'] -> [':3
 waitnrun(commands).then(procs => {
   procs.forEach(proc => proc?.kill?.());
   process.exit();
-})
+});
