@@ -1,6 +1,6 @@
 {
   "name": "waitnrun",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "main": "index.js",
   "scripts": {
     "test": "node --test test/*.spec.js"
