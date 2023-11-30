@@ -82,6 +82,9 @@ function waitForURL(url, maxTry=10) {
             if (res.statusCode >= 200 && res.statusCode < 400) {
               console.log(`[waitnrun] ${res.statusCode} ${res.statusMessage} ${url}`);
               resolve(res.statusMessage);
+            } else {
+              console.log(`[waitnrun] ${i+1}/${maxTry} ${url} ${res.statusCode}`);
+              loop(i+1)
             }
           }).on('error', err => {
             console.log(`[waitnrun] ${i+1}/${maxTry} ${url} ${err.message}`);
