@@ -71,7 +71,7 @@ function runCommand(command, waitToEnd=false) {
   }
 }
 
-function waitForURL(url, maxTry=20) {
+function waitForURL(url, maxTry=60) {
 
   return new Promise((resolve, reject) => {
     (function loop(i=0) {
